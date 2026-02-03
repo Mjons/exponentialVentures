@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponential Ventures</title>
+    
+    <!-- Typography: Instrument Serif for headings, Outfit for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES — Kodori-inspired palette
+           Deep navy base, teal accent, stark white
+           ============================================ */
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-off: #fafaf8;
+            --color-black: #0a0a0a;
+            --color-navy: #0a1628;
+            --color-navy-light: #1a2d4a;
+            --color-teal: #1a8a7d;
+            --color-teal-light: #2ab5a4;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #6b6b6b;
+            --color-rule: #e0e0e0;
+            
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'Outfit', system-ui, sans-serif;
+            
+            --max-width: 1200px;
+            --side-padding: clamp(1.5rem, 5vw, 4rem);
+        }
+
+        /* ============================================
+           RESET
+           ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.65;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--color-teal);
+            color: white;
+        }
+
+        /* ============================================
+           NAVIGATION — Kodori style
+           Logo left, link right, thin rule below
+           ============================================ */
+        .nav {
+            padding: 1.75rem var(--side-padding);
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        /* Custom logo mark — stylized "EV" monogram */
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border: 2px solid var(--color-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--color-navy);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-mark {
+            background: var(--color-navy);
+            color: white;
+        }
+
+        .logo-text {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-navy);
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-teal);
+        }
+
+        .nav-link .arrow {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover .arrow {
+            transform: translate(2px, -2px);
+        }
+
+        /* Thin horizontal rule — Kodori signature */
+        .nav-rule {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--side-padding);
+        }
+
+        .nav-rule hr {
+            border: none;
+            height: 1px;
+            background: var(--color-rule);
+        }
+
+        /* ============================================
+           HERO — Geometric art left, text right
+           Matches Kodori's split layout
+           ============================================ */
+        .hero {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 5rem var(--side-padding) 6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Generative geometric art — SVG canvas */
+        .hero-art {
+            position: relative;
+            aspect-ratio: 1;
+            max-width: 520px;
+        }
+
+        .hero-art canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--color-navy);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.3s forwards;
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            max-width: 480px;
+            margin-bottom: 1.25rem;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.5s forwards;
+        }
+
+        .hero-text p:last-of-type {
+            animation-delay: 0.65s;
+        }
+
+        .hero-detail {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-off);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            opacity: 0;
+            animation: fadeUp 0.8s 0.8s forwards;
+        }
+
+        .hero-detail .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-teal);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem var(--side-padding) 4rem;
+                gap: 3rem;
+            }
+            .hero-art {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+
+        /* ============================================
+           SECTION — Approach / Story
+           Clean text sections with generous spacing
+           ============================================ */
+        .section {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--side-padding);
+        }
+
+        .section-rule {
+            border: none;
+            height: 1px;
+            background: var(--color-rule);
+            margin-bottom: 4rem;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-teal);
+            padding-top: 0.25rem;
+        }
+
+        .section-content h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 400;
+            color: var(--color-navy);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-content p {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 850px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-bottom: 3.5rem;
+            }
+        }
+
+        /* ============================================
+           STATS ROW
+           ============================================ */
+        .stats {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--side-padding) 5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--color-rule);
+            border-bottom: 1px solid var(--color-rule);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--color-navy);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem 1rem;
+            }
+        }
+
+        /* ============================================
+           FOUNDERS
+           ============================================ */
+        .founders-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 600px;
+        }
+
+        .founder {
+            padding: 1.5rem;
+            background: var(--color-bg-off);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .founder:hover {
+            transform: translateY(-4px);
+        }
+
+        .founder-name {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--color-navy);
+            margin-bottom: 0.35rem;
+        }
+
+        .founder-role {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ============================================
+           COMING SOON SECTION
+           ============================================ */
+        .coming-soon-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 600px;
+        }
+
+        .cs-card {
+            padding: 1.5rem;
+            border: 1px solid var(--color-rule);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .cs-card:hover {
+            border-color: var(--color-teal);
+            box-shadow: 0 8px 30px rgba(26, 138, 125, 0.08);
+        }
+
+        .cs-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cs-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--color-navy);
+            margin-bottom: 0.35rem;
+        }
+
+        .cs-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .cs-badge {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--color-teal);
+            padding: 0.25rem 0.6rem;
+            border: 1px solid var(--color-teal);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .founders-grid,
+            .coming-soon-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           BLACK CONTACT SECTION — Kodori signature
+           ============================================ */
+        .contact {
+            background: var(--color-black);
+            color: white;
+            padding: 5rem var(--side-padding);
+            margin-top: 5rem;
+        }
+
+        .contact-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1rem;
+            max-width: 400px;
+        }
+
+        .contact-email {
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-email a {
+            color: var(--color-teal-light);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .contact-email a:hover {
+            border-bottom-color: var(--color-teal-light);
+        }
+
+        /* Newsletter form */
+        .newsletter {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .newsletter-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .newsletter-row {
+            display: flex;
+            gap: 0;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.85rem 1rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-right: none;
+            border-radius: 6px 0 0 6px;
+            color: white;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--color-teal);
+        }
+
+        .newsletter-btn {
+            padding: 0.85rem 1.5rem;
+            background: var(--color-teal);
+            color: white;
+            border: 1px solid var(--color-teal);
+            border-radius: 0 6px 6px 0;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--color-teal-light);
+        }
+
+        .newsletter-success {
+            display: none;
+            font-size: 0.9rem;
+            color: var(--color-teal-light);
+        }
+
+        .newsletter-success.show {
+            display: block;
+        }
+
+        @media (max-width: 700px) {
+            .contact-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        /* ============================================
+           FOOTER — Kodori style
+           Address left, logo right
+           ============================================ */
+        .footer {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2.5rem var(--side-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-address {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            width: 30px;
+            height: 30px;
+            border: 1.5px solid var(--color-text-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            color: var(--color-text-secondary);
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: 600px) {
+            .footer {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        /* ============================================
+           SCROLL REVEAL ANIMATION
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger children */
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.19s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.26s; opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
+    <header>
+        <nav class="nav">
+            <a href="#" class="nav-logo">
+                <div class="logo-mark">Ev</div>
+                <span class="logo-text">Exponential Ventures</span>
+            </a>
+            <a href="https://openexo.com" target="_blank" rel="noopener" class="nav-link">
+                Open ExO <span class="arrow">↗</span>
+            </a>
+        </nav>
+        <div class="nav-rule"><hr></div>
+    </header>
+
+    <!-- ============================================
+         HERO
+         ============================================ -->
+    <section class="hero">
+        <div class="hero-art">
+            <canvas id="heroCanvas" width="520" height="520"></canvas>
+        </div>
+        <div class="hero-text">
+            <h1>Exponential Ventures</h1>
+            <p>A global venture capital fund accelerating the success of startups working on civilization-scale problems with a combination of funding and exponential support.</p>
+            <p>Launched in 2025 and based in the Abu Dhabi Global Market (ADGM), the fund invests in and develops companies using the principles of Exponential Organizations.</p>
+            <div class="hero-detail">
+                <span class="dot"></span>
+                Abu Dhabi Global Market &nbsp;·&nbsp; Est. 2025
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         APPROACH
+         ============================================ -->
+    <div class="section">
+        <hr class="section-rule">
+        
+        <div class="section-grid reveal">
+            <div class="section-label">Approach</div>
+            <div class="section-content">
+                <h2>Venture Capital at Exponential Speed</h2>
+                <p>The fund is supported by the Open ExO global community and coaching ecosystem. We offer the unique opportunity to use the ExO methodology and framework, along with systems and tools to solve existential problems at exponential speed.</p>
+                <p>We've invested significant time, attention, funding and energy into creating systematized venture capital™, including an AI partner trained on thousands of deals in addition to research and best practices from venture capital and private equity.</p>
+            </div>
+        </div>
+
+        <div class="section-grid reveal">
+            <div class="section-label">Community</div>
+            <div class="section-content">
+                <h2>Sourced from 44,000 Strong</h2>
+                <p>The fund sources deals from the 44,000-strong ExO community and decades of relationships built by the partners. After 20 years of investing, we found that no system, framework or methodology produced faster growth and higher valuation than the ExO model.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         STATS
+         ============================================ -->
+    <div class="stats">
+        <div class="stats-grid reveal-stagger">
+            <div class="stat-item">
+                <div class="stat-number">44,000+</div>
+                <div class="stat-label">ExO Community Members</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Years Investing</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1,000s</div>
+                <div class="stat-label">Deals Analyzed by AI</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2025</div>
+                <div class="stat-label">Fund Launch (ADGM)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         FOUNDERS
+         ============================================ -->
+    <div class="section">
+        <div class="section-grid reveal">
+            <div class="section-label">Founders</div>
+            <div class="section-content">
+                <h2>Built on Decades of Exponential Thinking</h2>
+                <p>Founded by two partners who have spent their careers at the intersection of exponential technology, organizational transformation, and venture investing.</p>
+                <div class="founders-grid" style="margin-top: 1.5rem;">
+                    <div class="founder">
+                        <div class="founder-name">Salim Ismail</div>
+                        <div class="founder-role">Co-author of <em>Exponential Organizations</em> and co-founder of Open ExO</div>
+                    </div>
+                    <div class="founder">
+                        <div class="founder-name">James Drage</div>
+                        <div class="founder-role">Venture capitalist, investor in Open ExO, 20+ years in VC</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         COMING SOON
+         ============================================ -->
+    <div class="section">
+        <hr class="section-rule">
+        <div class="section-grid reveal">
+            <div class="section-label">2026</div>
+            <div class="section-content">
+                <h2>What's Coming</h2>
+                <p>In 2026, Salim and James will release the <em>Exponential Venture Capital</em> book and podcast to support the fund MTP, as well as open the fund to outside LPs.</p>
+                <div class="coming-soon-cards" style="margin-top: 1.5rem;">
+                    <div class="cs-card">
+                        <div class="cs-icon">📖</div>
+                        <h4>The Book</h4>
+                        <p><em>Exponential Venture Capital</em> — the definitive guide to systematized VC</p>
+                        <span class="cs-badge">2026</span>
+                    </div>
+                    <div class="cs-card">
+                        <div class="cs-icon">🎙️</div>
+                        <h4>The Podcast</h4>
+                        <p>Deep dives into exponential thinking applied to venture investing</p>
+                        <span class="cs-badge">2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         BLACK CONTACT SECTION
+         ============================================ -->
+    <section class="contact">
+        <div class="contact-inner">
+            <div>
+                <h3>Get in Touch</h3>
+                <p>Exponential Ventures is opening to outside LPs in 2026. To learn more about the fund, partnership opportunities, or the ExO methodology, reach out directly.</p>
+                <div class="contact-email">
+                    <a href="mailto:info@exponential.ventures">info@exponential.ventures</a>
+                </div>
+            </div>
+            <div>
+                <div class="newsletter" id="newsletter">
+                    <span class="newsletter-label">Stay Informed</span>
+                    <div class="newsletter-row" id="newsletterForm">
+                        <input type="email" class="newsletter-input" id="emailInput" placeholder="your@email.com">
+                        <button class="newsletter-btn" id="newsletterBtn" onclick="handleSubscribe()">Subscribe</button>
+                    </div>
+                    <div class="newsletter-success" id="newsletterSuccess">
+                        ✓ &nbsp;Thank you. We'll be in touch.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <div class="footer-address">
+            Exponential Ventures<br>
+            Abu Dhabi Global Market<br>
+            Abu Dhabi, UAE
+        </div>
+        <div class="footer-right">
+            <span class="footer-copyright">© 2025 Exponential Ventures</span>
+            <div class="footer-logo">Ev</div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        /* ============================================
+           GENERATIVE GEOMETRIC ART
+           Inspired by Kodori's intersecting lines
+           but using an exponential network/growth motif
+           ============================================ */
+        (function drawHeroArt() {
+            const canvas = document.getElementById('heroCanvas');
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            
+            // High-DPI support
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = 520 * dpr;
+            canvas.height = 520 * dpr;
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            ctx.scale(dpr, dpr);
+            
+            const W = 520;
+            const H = 520;
+            
+            // Color palette matching Kodori's teal-to-navy gradient lines
+            const colors = [
+                { r: 26, g: 138, b: 125 },   // Teal
+                { r: 42, g: 181, b: 164 },   // Light teal
+                { r: 26, g: 45, b: 74 },     // Navy
+                { r: 10, g: 22, b: 40 },     // Dark navy
+                { r: 70, g: 150, b: 140 },   // Mid teal
+                { r: 15, g: 35, b: 60 },     // Deep navy
+            ];
+
+            // Generate random lines that intersect — Kodori style
+            const lines = [];
+            const numLines = 12;
+            
+            for (let i = 0; i < numLines; i++) {
+                const angle = (Math.random() * Math.PI) - (Math.PI / 2);
+                const cx = W * 0.3 + Math.random() * W * 0.4;
+                const cy = H * 0.3 + Math.random() * H * 0.4;
+                const length = 200 + Math.random() * 300;
+                const width = 6 + Math.random() * 18;
+                const colorIdx = Math.floor(Math.random() * colors.length);
+                
+                lines.push({
+                    x1: cx - Math.cos(angle) * length / 2,
+                    y1: cy - Math.sin(angle) * length / 2,
+                    x2: cx + Math.cos(angle) * length / 2,
+                    y2: cy + Math.sin(angle) * length / 2,
+                    width: width,
+                    color: colors[colorIdx],
+                    opacity: 0.5 + Math.random() * 0.5,
+                    drawn: 0,
+                    speed: 0.015 + Math.random() * 0.015,
+                    delay: i * 80,
+                });
+            }
+
+            // Add network nodes at line intersections
+            const nodes = [];
+            for (let i = 0; i < 8; i++) {
+                nodes.push({
+                    x: W * 0.2 + Math.random() * W * 0.6,
+                    y: H * 0.2 + Math.random() * H * 0.6,
+                    radius: 3 + Math.random() * 5,
+                    opacity: 0,
+                    targetOpacity: 0.4 + Math.random() * 0.6,
+                    delay: 800 + i * 120,
+                });
+            }
+
+            let startTime = null;
+
+            function animate(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                
+                ctx.clearRect(0, 0, W, H);
+                
+                // Draw lines with progressive reveal
+                lines.forEach((line, i) => {
+                    const lineElapsed = Math.max(0, elapsed - line.delay);
+                    const progress = Math.min(1, lineElapsed * line.speed / 16);
+                    
+                    if (progress <= 0) return;
+                    
+                    const dx = line.x2 - line.x1;
+                    const dy = line.y2 - line.y1;
+                    
+                    // Eased progress
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    
+                    const currentX2 = line.x1 + dx * eased;
+                    const currentY2 = line.y1 + dy * eased;
+                    
+                    // Create gradient along the line
+                    const grad = ctx.createLinearGradient(line.x1, line.y1, currentX2, currentY2);
+                    const c = line.color;
+                    grad.addColorStop(0, `rgba(${c.r}, ${c.g}, ${c.b}, ${line.opacity * 0.3})`);
+                    grad.addColorStop(0.5, `rgba(${c.r}, ${c.g}, ${c.b}, ${line.opacity})`);
+                    grad.addColorStop(1, `rgba(${c.r}, ${c.g}, ${c.b}, ${line.opacity * 0.5})`);
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(line.x1, line.y1);
+                    ctx.lineTo(currentX2, currentY2);
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = line.width;
+                    ctx.lineCap = 'square';
+                    ctx.stroke();
+                });
+                
+                // Draw nodes with fade in
+                nodes.forEach(node => {
+                    const nodeElapsed = Math.max(0, elapsed - node.delay);
+                    const fadeIn = Math.min(1, nodeElapsed / 600);
+                    
+                    if (fadeIn <= 0) return;
+                    
+                    const eased = 1 - Math.pow(1 - fadeIn, 2);
+                    const opacity = eased * node.targetOpacity;
+                    
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.radius * eased, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(26, 138, 125, ${opacity})`;
+                    ctx.fill();
+                });
+
+                // Keep animating until everything is drawn
+                if (elapsed < 3000) {
+                    requestAnimationFrame(animate);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        })();
+
+        /* ============================================
+           SCROLL REVEAL — Intersection Observer
+           ============================================ */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        /* ============================================
+           NEWSLETTER SUBSCRIBE HANDLER
+           ============================================ */
+        function handleSubscribe() {
+            const input = document.getElementById('emailInput');
+            const form = document.getElementById('newsletterForm');
+            const success = document.getElementById('newsletterSuccess');
+            
+            if (input.value && input.value.includes('@')) {
+                form.style.display = 'none';
+                success.classList.add('show');
+            } else {
+                input.style.borderColor = '#c53030';
+                input.focus();
+                setTimeout(() => {
+                    input.style.borderColor = 'rgba(255,255,255,0.15)';
+                }, 2000);
+            }
+        }
+
+        // Enter key triggers subscribe
+        document.getElementById('emailInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleSubscribe();
+        });
+    </script>
+</body>
+</html>
