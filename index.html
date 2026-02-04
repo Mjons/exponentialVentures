@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exponential Ventures</title>
-    
-    <!-- Typography: Instrument Serif for headings, Outfit for body -->
+    <title>Exponential Ventures — Civilization-Scale Impact</title>
+
+    <!-- Typography: Clash Display for headings, Satoshi for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+
     <style>
         /* ============================================
-           CSS VARIABLES — Kodori-inspired palette
-           Deep navy base, teal accent, stark white
+           CSS VARIABLES — Cosmic Futurism Palette
+           Deep space black, aurora teal, golden accent
            ============================================ */
         :root {
-            --color-bg: #ffffff;
-            --color-bg-off: #fafaf8;
-            --color-black: #0a0a0a;
-            --color-navy: #0a1628;
-            --color-navy-light: #1a2d4a;
-            --color-teal: #1a8a7d;
-            --color-teal-light: #2ab5a4;
-            --color-text: #1a1a1a;
-            --color-text-secondary: #6b6b6b;
-            --color-rule: #e0e0e0;
-            
-            --font-display: 'Instrument Serif', Georgia, serif;
-            --font-body: 'Outfit', system-ui, sans-serif;
-            
-            --max-width: 1200px;
-            --side-padding: clamp(1.5rem, 5vw, 4rem);
+            --color-void: #030308;
+            --color-obsidian: #0a0a12;
+            --color-slate: #12121d;
+            --color-charcoal: #1a1a2e;
+            --color-mist: #8b8ba3;
+            --color-silver: #c4c4d4;
+            --color-white: #f0f0f5;
+
+            --color-aurora-start: #0ff4c6;
+            --color-aurora-mid: #00d4aa;
+            --color-aurora-end: #00a8e8;
+            --color-gold: #ffd700;
+            --color-gold-dim: #b8960b;
+
+            --font-display: 'Clash Display', 'SF Pro Display', system-ui, sans-serif;
+            --font-body: 'Satoshi', 'SF Pro Text', system-ui, sans-serif;
+
+            --max-width: 1400px;
+            --gutter: clamp(1.5rem, 6vw, 6rem);
         }
 
         /* ============================================
-           RESET
+           RESET & BASE
            ============================================ */
         *, *::before, *::after {
             box-sizing: border-box;
@@ -45,34 +48,91 @@
 
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
             font-family: var(--font-body);
-            background: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.65;
-            font-weight: 300;
+            background: var(--color-void);
+            color: var(--color-silver);
+            line-height: 1.7;
+            font-weight: 400;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
         ::selection {
-            background: var(--color-teal);
-            color: white;
+            background: var(--color-aurora-mid);
+            color: var(--color-void);
         }
 
         /* ============================================
-           NAVIGATION — Kodori style
-           Logo left, link right, thin rule below
+           COSMIC BACKGROUND — Particle field
+           ============================================ */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cosmic-bg canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Aurora gradient overlay */
+        .aurora-glow {
+            position: fixed;
+            top: -50%;
+            right: -30%;
+            width: 80%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0, 212, 170, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: auroraFloat 20s ease-in-out infinite;
+        }
+
+        .aurora-glow-2 {
+            position: fixed;
+            bottom: -30%;
+            left: -20%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(0, 168, 232, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: auroraFloat 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes auroraFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(5%, -3%) scale(1.05); }
+            66% { transform: translate(-3%, 5%) scale(0.98); }
+        }
+
+        /* ============================================
+           NAVIGATION
            ============================================ */
         .nav {
-            padding: 1.75rem var(--side-padding);
-            max-width: var(--max-width);
-            margin: 0 auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem var(--gutter);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: linear-gradient(to bottom, var(--color-void) 0%, transparent 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .nav-logo {
@@ -80,422 +140,577 @@
             align-items: center;
             gap: 0.75rem;
             text-decoration: none;
-            color: var(--color-text);
+            color: var(--color-white);
         }
 
-        /* Custom logo mark — stylized "EV" monogram */
-        .logo-mark {
-            width: 38px;
-            height: 38px;
-            border: 2px solid var(--color-navy);
+        .logo-symbol {
+            width: 42px;
+            height: 42px;
+            border: 1.5px solid var(--color-aurora-mid);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--font-display);
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            color: var(--color-navy);
-            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .nav-logo:hover .logo-mark {
-            background: var(--color-navy);
-            color: white;
+        .logo-symbol::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-aurora-start), var(--color-aurora-end));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .logo-symbol span {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--color-aurora-mid);
+            position: relative;
+            z-index: 1;
+            transition: color 0.4s;
+        }
+
+        .nav-logo:hover .logo-symbol::before {
+            opacity: 1;
+        }
+
+        .nav-logo:hover .logo-symbol span {
+            color: var(--color-void);
         }
 
         .logo-text {
             font-family: var(--font-body);
             font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--color-navy);
+            color: var(--color-white);
         }
 
         .nav-link {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-mist);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.35rem;
-            transition: color 0.2s;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid rgba(139, 139, 163, 0.2);
+            border-radius: 100px;
+            transition: all 0.3s;
         }
 
         .nav-link:hover {
-            color: var(--color-teal);
+            color: var(--color-white);
+            border-color: var(--color-aurora-mid);
+            background: rgba(0, 212, 170, 0.08);
         }
 
         .nav-link .arrow {
-            font-size: 0.75rem;
-            transition: transform 0.2s;
+            font-size: 0.7rem;
+            transition: transform 0.3s;
         }
 
         .nav-link:hover .arrow {
             transform: translate(2px, -2px);
         }
 
-        /* Thin horizontal rule — Kodori signature */
-        .nav-rule {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 var(--side-padding);
-        }
-
-        .nav-rule hr {
-            border: none;
-            height: 1px;
-            background: var(--color-rule);
-        }
-
         /* ============================================
-           HERO — Geometric art left, text right
-           Matches Kodori's split layout
+           HERO — Full viewport dramatic entrance
            ============================================ */
         .hero {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 5rem var(--side-padding) 6rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        /* Generative geometric art — SVG canvas */
-        .hero-art {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem var(--gutter) 6rem;
             position: relative;
-            aspect-ratio: 1;
-            max-width: 520px;
+            z-index: 1;
         }
 
-        .hero-art canvas {
-            width: 100%;
-            height: 100%;
+        .hero-content {
+            max-width: 1000px;
         }
 
-        .hero-text h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
-            font-weight: 400;
-            line-height: 1.1;
-            color: var(--color-navy);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeUp 0.8s 0.3s forwards;
-        }
-
-        .hero-text p {
-            font-size: 1.05rem;
-            color: var(--color-text-secondary);
-            max-width: 480px;
-            margin-bottom: 1.25rem;
-            opacity: 0;
-            animation: fadeUp 0.8s 0.5s forwards;
-        }
-
-        .hero-text p:last-of-type {
-            animation-delay: 0.65s;
-        }
-
-        .hero-detail {
+        .hero-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: var(--color-bg-off);
-            border-radius: 6px;
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
+            gap: 0.75rem;
+            margin-bottom: 2rem;
             opacity: 0;
-            animation: fadeUp 0.8s 0.8s forwards;
+            animation: fadeSlideUp 0.8s 0.2s forwards;
         }
 
-        .hero-detail .dot {
-            width: 8px;
-            height: 8px;
+        .hero-eyebrow .line {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--color-aurora-mid), transparent);
+        }
+
+        .hero-eyebrow span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-aurora-mid);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 600;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--color-white);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 .word {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s forwards;
+        }
+
+        .hero h1 .word:nth-child(1) { animation-delay: 0.3s; }
+        .hero h1 .word:nth-child(2) { animation-delay: 0.45s; }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            color: var(--color-mist);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s 0.6s forwards;
+        }
+
+        .hero-tagline em {
+            font-style: normal;
+            color: var(--color-aurora-mid);
+        }
+
+        .hero-intro {
+            font-size: 1.05rem;
+            color: var(--color-silver);
+            max-width: 620px;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s 0.75s forwards;
+        }
+
+        .hero-locations {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s 0.9s forwards;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .location-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--color-aurora-mid);
             border-radius: 50%;
-            background: var(--color-teal);
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .location span {
+            font-size: 0.9rem;
+            color: var(--color-mist);
+            letter-spacing: 0.05em;
         }
 
-        @media (max-width: 850px) {
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 3rem var(--side-padding) 4rem;
-                gap: 3rem;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            .hero-art {
-                max-width: 350px;
-                margin: 0 auto;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
         /* ============================================
-           SECTION — Approach / Story
-           Clean text sections with generous spacing
+           SECTION STYLING — Editorial grid
            ============================================ */
         .section {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 var(--side-padding);
+            position: relative;
+            z-index: 1;
+            padding: 0 var(--gutter);
         }
 
-        .section-rule {
-            border: none;
-            height: 1px;
-            background: var(--color-rule);
+        .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 6rem 0;
+            border-top: 1px solid rgba(139, 139, 163, 0.1);
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 4rem;
             margin-bottom: 4rem;
         }
 
-        .section-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 4rem;
-            margin-bottom: 5rem;
-        }
-
         .section-label {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: var(--color-teal);
-            padding-top: 0.25rem;
+            color: var(--color-aurora-mid);
+            padding-top: 0.5rem;
         }
 
-        .section-content h2 {
+        .section-title {
             font-family: var(--font-display);
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            font-weight: 400;
-            color: var(--color-navy);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--color-white);
+            letter-spacing: -0.02em;
+        }
+
+        .section-body {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 4rem;
+        }
+
+        .section-body > :first-child {
+            /* Empty column for alignment */
+        }
+
+        .section-content {
+            max-width: 720px;
         }
 
         .section-content p {
-            font-size: 1.05rem;
-            color: var(--color-text-secondary);
-            max-width: 600px;
-            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            color: var(--color-silver);
+            margin-bottom: 1.5rem;
         }
 
         .section-content p:last-child {
             margin-bottom: 0;
         }
 
-        @media (max-width: 850px) {
-            .section-grid {
+        @media (max-width: 900px) {
+            .section-header,
+            .section-body {
                 grid-template-columns: 1fr;
-                gap: 1rem;
-                margin-bottom: 3.5rem;
+                gap: 1.5rem;
             }
         }
 
         /* ============================================
-           STATS ROW
+           STATS — Dramatic number display
            ============================================ */
         .stats {
+            position: relative;
+            z-index: 1;
+            padding: 0 var(--gutter);
+        }
+
+        .stats-inner {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 var(--side-padding) 5rem;
+            padding: 5rem 0;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            padding: 2.5rem 0;
-            border-top: 1px solid var(--color-rule);
-            border-bottom: 1px solid var(--color-rule);
         }
 
-        .stat-item {
+        .stat {
             text-align: center;
+            padding: 2.5rem 1rem;
+            border: 1px solid rgba(139, 139, 163, 0.1);
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(18, 18, 29, 0.6) 0%, rgba(10, 10, 18, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .stat:hover {
+            border-color: rgba(0, 212, 170, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.08);
         }
 
         .stat-number {
             font-family: var(--font-display);
-            font-size: 2.5rem;
-            color: var(--color-navy);
-            line-height: 1.1;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--color-white) 0%, var(--color-aurora-mid) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
         }
 
         .stat-label {
             font-size: 0.85rem;
-            color: var(--color-text-secondary);
-            margin-top: 0.5rem;
+            color: var(--color-mist);
+            margin-top: 0.75rem;
+            letter-spacing: 0.02em;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 800px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 2rem 1rem;
             }
         }
 
-        /* ============================================
-           FOUNDERS
-           ============================================ */
-        .founders-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 600px;
-        }
-
-        .founder {
-            padding: 1.5rem;
-            background: var(--color-bg-off);
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .founder:hover {
-            transform: translateY(-4px);
-        }
-
-        .founder-name {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            color: var(--color-navy);
-            margin-bottom: 0.35rem;
-        }
-
-        .founder-role {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-        }
-
-        /* ============================================
-           COMING SOON SECTION
-           ============================================ */
-        .coming-soon-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            max-width: 600px;
-        }
-
-        .cs-card {
-            padding: 1.5rem;
-            border: 1px solid var(--color-rule);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .cs-card:hover {
-            border-color: var(--color-teal);
-            box-shadow: 0 8px 30px rgba(26, 138, 125, 0.08);
-        }
-
-        .cs-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .cs-card h4 {
-            font-family: var(--font-display);
-            font-size: 1.15rem;
-            font-weight: 400;
-            color: var(--color-navy);
-            margin-bottom: 0.35rem;
-        }
-
-        .cs-card p {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-        }
-
-        .cs-badge {
-            display: inline-block;
-            margin-top: 0.75rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--color-teal);
-            padding: 0.25rem 0.6rem;
-            border: 1px solid var(--color-teal);
-            border-radius: 4px;
-        }
-
-        @media (max-width: 600px) {
-            .founders-grid,
-            .coming-soon-cards {
+        @media (max-width: 500px) {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         /* ============================================
-           BLACK CONTACT SECTION — Kodori signature
+           FOUNDERS SECTION
+           ============================================ */
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .founder-card {
+            padding: 2rem;
+            border: 1px solid rgba(139, 139, 163, 0.15);
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(18, 18, 29, 0.8) 0%, rgba(10, 10, 18, 0.4) 100%);
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .founder-card:hover {
+            border-color: rgba(0, 212, 170, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .founder-card.ai-partner {
+            border-color: rgba(255, 215, 0, 0.15);
+        }
+
+        .founder-card.ai-partner:hover {
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.06);
+        }
+
+        .founder-type {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .founder-type.human {
+            color: var(--color-aurora-mid);
+        }
+
+        .founder-type.ai {
+            color: var(--color-gold);
+        }
+
+        .founder-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--color-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-role {
+            font-size: 0.95rem;
+            color: var(--color-mist);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 700px) {
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           2026 SECTION — Coming soon
+           ============================================ */
+        .coming-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .coming-card {
+            padding: 2.5rem;
+            border: 1px solid rgba(139, 139, 163, 0.12);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(18, 18, 29, 0.6) 0%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .coming-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-aurora-mid), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .coming-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 212, 170, 0.25);
+        }
+
+        .coming-card:hover::before {
+            opacity: 1;
+        }
+
+        .coming-icon {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .coming-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--color-white);
+            margin-bottom: 0.75rem;
+        }
+
+        .coming-card p {
+            font-size: 0.95rem;
+            color: var(--color-mist);
+            line-height: 1.6;
+        }
+
+        .coming-badge {
+            display: inline-block;
+            margin-top: 1.25rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-aurora-mid);
+            padding: 0.4rem 0.9rem;
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            border-radius: 100px;
+        }
+
+        @media (max-width: 700px) {
+            .coming-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           CONTACT SECTION — Dark with aurora glow
            ============================================ */
         .contact {
-            background: var(--color-black);
-            color: white;
-            padding: 5rem var(--side-padding);
-            margin-top: 5rem;
+            position: relative;
+            z-index: 1;
+            padding: 0 var(--gutter);
+            margin-top: 4rem;
         }
 
         .contact-inner {
             max-width: var(--max-width);
             margin: 0 auto;
+            padding: 6rem 0;
+            border-top: 1px solid rgba(139, 139, 163, 0.1);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: start;
         }
 
-        .contact h3 {
+        .contact-text h3 {
             font-family: var(--font-display);
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 500;
+            color: var(--color-white);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
         }
 
-        .contact p {
-            color: rgba(255,255,255,0.6);
-            font-size: 1rem;
-            max-width: 400px;
-        }
-
-        .contact-email {
-            font-size: 1.1rem;
-            margin-top: 1.5rem;
+        .contact-text p {
+            font-size: 1.05rem;
+            color: var(--color-mist);
+            max-width: 480px;
+            margin-bottom: 2rem;
         }
 
         .contact-email a {
-            color: var(--color-teal-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-aurora-mid);
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            border-radius: 100px;
+            transition: all 0.3s;
         }
 
         .contact-email a:hover {
-            border-bottom-color: var(--color-teal-light);
+            background: rgba(0, 212, 170, 0.1);
+            border-color: var(--color-aurora-mid);
+            transform: translateX(4px);
         }
 
-        /* Newsletter form */
+        /* Newsletter */
         .newsletter {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(139, 139, 163, 0.12);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(18, 18, 29, 0.8) 0%, rgba(10, 10, 18, 0.4) 100%);
         }
 
         .newsletter-label {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
+            color: var(--color-mist);
+            margin-bottom: 1.25rem;
         }
 
         .newsletter-row {
@@ -505,118 +720,144 @@
 
         .newsletter-input {
             flex: 1;
-            padding: 0.85rem 1rem;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
+            padding: 1rem 1.25rem;
+            background: rgba(139, 139, 163, 0.08);
+            border: 1px solid rgba(139, 139, 163, 0.2);
             border-right: none;
-            border-radius: 6px 0 0 6px;
-            color: white;
+            border-radius: 10px 0 0 10px;
+            color: var(--color-white);
             font-family: var(--font-body);
             font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.3s;
         }
 
         .newsletter-input::placeholder {
-            color: rgba(255,255,255,0.35);
+            color: var(--color-mist);
         }
 
         .newsletter-input:focus {
-            border-color: var(--color-teal);
+            border-color: var(--color-aurora-mid);
+            background: rgba(0, 212, 170, 0.05);
         }
 
         .newsletter-btn {
-            padding: 0.85rem 1.5rem;
-            background: var(--color-teal);
-            color: white;
-            border: 1px solid var(--color-teal);
-            border-radius: 0 6px 6px 0;
+            padding: 1rem 1.75rem;
+            background: linear-gradient(135deg, var(--color-aurora-mid), var(--color-aurora-end));
+            color: var(--color-void);
+            border: none;
+            border-radius: 0 10px 10px 0;
             font-family: var(--font-body);
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s;
             white-space: nowrap;
         }
 
         .newsletter-btn:hover {
-            background: var(--color-teal-light);
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.3);
         }
 
         .newsletter-success {
             display: none;
-            font-size: 0.9rem;
-            color: var(--color-teal-light);
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: var(--color-aurora-mid);
+            text-align: center;
         }
 
         .newsletter-success.show {
             display: block;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 800px) {
             .contact-inner {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
+                gap: 3rem;
             }
         }
 
         /* ============================================
-           FOOTER — Kodori style
-           Address left, logo right
+           FOOTER
            ============================================ */
         .footer {
+            position: relative;
+            z-index: 1;
+            padding: 0 var(--gutter);
+        }
+
+        .footer-inner {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 2.5rem var(--side-padding);
+            padding: 3rem 0;
+            border-top: 1px solid rgba(139, 139, 163, 0.1);
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
-        .footer-address {
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-        }
-
-        .footer-right {
+        .footer-brand {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
         .footer-logo {
-            width: 30px;
-            height: 30px;
-            border: 1.5px solid var(--color-text-secondary);
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(0, 212, 170, 0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--font-display);
             font-size: 0.7rem;
-            color: var(--color-text-secondary);
+            font-weight: 600;
+            color: var(--color-aurora-mid);
+        }
+
+        .footer-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-white);
+        }
+
+        .footer-locations {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.85rem;
+            color: var(--color-mist);
         }
 
         .footer-copyright {
             font-size: 0.8rem;
-            color: var(--color-text-secondary);
+            color: var(--color-mist);
         }
 
-        @media (max-width: 600px) {
-            .footer {
+        @media (max-width: 700px) {
+            .footer-inner {
                 flex-direction: column;
-                gap: 1.5rem;
+                text-align: center;
+                gap: 1rem;
+            }
+            .footer-locations {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
 
         /* ============================================
-           SCROLL REVEAL ANIMATION
+           SCROLL REVEAL
            ============================================ */
         .reveal {
             opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                        transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .reveal.visible {
@@ -624,20 +865,49 @@
             transform: translateY(0);
         }
 
-        /* Stagger children */
         .reveal-stagger > * {
             opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(25px);
+            transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+                        transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.19s; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.26s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+
+        /* ============================================
+           SMOOTH SCROLLBAR STYLING
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-void);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-charcoal);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-mist);
+        }
     </style>
 </head>
 <body>
+
+    <!-- ============================================
+         COSMIC BACKGROUND
+         ============================================ -->
+    <div class="cosmic-bg">
+        <canvas id="cosmicCanvas"></canvas>
+    </div>
+    <div class="aurora-glow"></div>
+    <div class="aurora-glow-2"></div>
 
     <!-- ============================================
          NAVIGATION
@@ -645,30 +915,39 @@
     <header>
         <nav class="nav">
             <a href="#" class="nav-logo">
-                <div class="logo-mark">Ev</div>
+                <div class="logo-symbol"><span>Ev</span></div>
                 <span class="logo-text">Exponential Ventures</span>
             </a>
             <a href="https://openexo.com" target="_blank" rel="noopener" class="nav-link">
                 Open ExO <span class="arrow">↗</span>
             </a>
         </nav>
-        <div class="nav-rule"><hr></div>
     </header>
 
     <!-- ============================================
          HERO
          ============================================ -->
     <section class="hero">
-        <div class="hero-art">
-            <canvas id="heroCanvas" width="520" height="520"></canvas>
-        </div>
-        <div class="hero-text">
-            <h1>Exponential Ventures</h1>
-            <p>A global venture capital fund accelerating the success of startups working on civilization-scale problems with a combination of funding and exponential support.</p>
-            <p>Launched in 2025 and based in the Abu Dhabi Global Market (ADGM), the fund invests in and develops companies using the principles of Exponential Organizations.</p>
-            <div class="hero-detail">
-                <span class="dot"></span>
-                Abu Dhabi Global Market &nbsp;·&nbsp; Est. 2025
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <div class="line"></div>
+                <span>Est. 2025</span>
+            </div>
+            <h1>
+                <span class="word">Exponential</span><br>
+                <span class="word">Ventures</span>
+            </h1>
+            <p class="hero-tagline">Built for <em>exponential founders</em>.<br>Focused on <em>civilization-scale impact</em>.</p>
+            <p class="hero-intro">Launched in 2025 and based in New York City and Abu Dhabi, the fund invests in and develops companies globally using the principles of Exponential Organizations.</p>
+            <div class="hero-locations">
+                <div class="location">
+                    <div class="location-dot"></div>
+                    <span>New York City</span>
+                </div>
+                <div class="location">
+                    <div class="location-dot"></div>
+                    <span>Abu Dhabi</span>
+                </div>
             </div>
         </div>
     </section>
@@ -676,124 +955,165 @@
     <!-- ============================================
          APPROACH
          ============================================ -->
-    <div class="section">
-        <hr class="section-rule">
-        
-        <div class="section-grid reveal">
-            <div class="section-label">Approach</div>
-            <div class="section-content">
-                <h2>Venture Capital at Exponential Speed</h2>
-                <p>The fund is supported by the Open ExO global community and coaching ecosystem. We offer the unique opportunity to use the ExO methodology and framework, along with systems and tools to solve existential problems at exponential speed.</p>
-                <p>We've invested significant time, attention, funding and energy into creating systematized venture capital™, including an AI partner trained on thousands of deals in addition to research and best practices from venture capital and private equity.</p>
+    <section class="section">
+        <div class="section-inner reveal">
+            <div class="section-header">
+                <div class="section-label">Approach</div>
+                <h2 class="section-title">Venture Capital at Exponential Speed</h2>
+            </div>
+            <div class="section-body">
+                <div></div>
+                <div class="section-content">
+                    <p>The fund is supported by the Open ExO global community and coaching ecosystem. We offer portfolio companies a unique opportunity to use the ExO methodology and framework, along with advanced systems and tools previously only available to a very select group of global companies.</p>
+                    <p>Together with privileged access to 5,000 trained coaches, consultants and subject matter experts, we help founders and teams solve existential problems facing humanity at exponential speed.</p>
+                    <p>We've invested significant time, attention, funding, effort and energy into creating a better way of investing — what we call <strong style="color: var(--color-white);">systematized venture capital™</strong>.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="section-grid reveal">
-            <div class="section-label">Community</div>
-            <div class="section-content">
-                <h2>Sourced from 44,000 Strong</h2>
-                <p>The fund sources deals from the 44,000-strong ExO community and decades of relationships built by the partners. After 20 years of investing, we found that no system, framework or methodology produced faster growth and higher valuation than the ExO model.</p>
+    <!-- ============================================
+         COMMUNITY
+         ============================================ -->
+    <section class="section">
+        <div class="section-inner reveal">
+            <div class="section-header">
+                <div class="section-label">Community</div>
+                <h2 class="section-title">Sourced from 44,000 Strong</h2>
+            </div>
+            <div class="section-body">
+                <div></div>
+                <div class="section-content">
+                    <p>The fund sources deals from the 44,000-strong ExO community and decades of relationships built by the partners. After 20+ years of investing, we found that no other system, framework or methodology consistently produces faster growth and higher valuations than the ExO model.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- ============================================
          STATS
          ============================================ -->
-    <div class="stats">
-        <div class="stats-grid reveal-stagger">
-            <div class="stat-item">
-                <div class="stat-number">44,000+</div>
-                <div class="stat-label">ExO Community Members</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">20+</div>
-                <div class="stat-label">Years Investing</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">1,000s</div>
-                <div class="stat-label">Deals Analyzed by AI</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2025</div>
-                <div class="stat-label">Fund Launch (ADGM)</div>
+    <section class="stats">
+        <div class="stats-inner">
+            <div class="stats-grid reveal-stagger">
+                <div class="stat">
+                    <div class="stat-number">44,000+</div>
+                    <div class="stat-label">ExO Community Members</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Years Investing</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1,000s</div>
+                    <div class="stat-label">Deals Analyzed by AI</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2025</div>
+                    <div class="stat-label">Fund Launched</div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- ============================================
          FOUNDERS
          ============================================ -->
-    <div class="section">
-        <div class="section-grid reveal">
-            <div class="section-label">Founders</div>
-            <div class="section-content">
-                <h2>Built on Decades of Exponential Thinking</h2>
-                <p>Founded by two partners who have spent their careers at the intersection of exponential technology, organizational transformation, and venture investing.</p>
-                <div class="founders-grid" style="margin-top: 1.5rem;">
-                    <div class="founder">
-                        <div class="founder-name">Salim Ismail</div>
-                        <div class="founder-role">Co-author of <em>Exponential Organizations</em> and co-founder of Open ExO</div>
-                    </div>
-                    <div class="founder">
-                        <div class="founder-name">James Drage</div>
-                        <div class="founder-role">Venture capitalist, investor in Open ExO, 20+ years in VC</div>
+    <section class="section">
+        <div class="section-inner reveal">
+            <div class="section-header">
+                <div class="section-label">Founders</div>
+                <h2 class="section-title">Built on Decades of Exponential Thinking</h2>
+            </div>
+            <div class="section-body">
+                <div></div>
+                <div class="section-content">
+                    <p>Founded by two partners who have spent their careers at the intersection of exponential technology, organizational transformation, and venture investing — the fund also includes two AI partners trained on thousands of deals in addition to research and best practices from venture capital and private equity.</p>
+                    <p>Every fund now uses AI for deal flow, due diligence, deal structuring and to offer strategic guidance to shape long term success — but we've taken it to a different level with AI partners that we believe are the most advanced and specialized in venture capital.</p>
+
+                    <div class="founders-grid">
+                        <div class="founder-card">
+                            <div class="founder-type human">Human Partner</div>
+                            <div class="founder-name">Salim Ismail</div>
+                            <div class="founder-role">Co-author of <em>Exponential Organizations</em> and co-founder of OpenExO</div>
+                        </div>
+                        <div class="founder-card">
+                            <div class="founder-type human">Human Partner</div>
+                            <div class="founder-name">James Drage</div>
+                            <div class="founder-role">Venture capitalist, investor in Open ExO, 20+ years in VC</div>
+                        </div>
+                        <div class="founder-card ai-partner">
+                            <div class="founder-type ai">AI Partner</div>
+                            <div class="founder-name">VCPartner.ai</div>
+                            <div class="founder-role">An AI focused more on quantitative aspects of success.</div>
+                        </div>
+                        <div class="founder-card ai-partner">
+                            <div class="founder-type ai">AI Partner</div>
+                            <div class="founder-name">AIPartner.vc</div>
+                            <div class="founder-role">An AI focused more on qualitative aspects of success.</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- ============================================
-         COMING SOON
+         2026 — WHAT'S COMING
          ============================================ -->
-    <div class="section">
-        <hr class="section-rule">
-        <div class="section-grid reveal">
-            <div class="section-label">2026</div>
-            <div class="section-content">
-                <h2>What's Coming</h2>
-                <p>In 2026, Salim and James will release the <em>Exponential Venture Capital</em> book and podcast to support the fund MTP, as well as open the fund to outside LPs.</p>
-                <div class="coming-soon-cards" style="margin-top: 1.5rem;">
-                    <div class="cs-card">
-                        <div class="cs-icon">📖</div>
-                        <h4>The Book</h4>
-                        <p><em>Exponential Venture Capital</em> — the definitive guide to systematized VC</p>
-                        <span class="cs-badge">2026</span>
-                    </div>
-                    <div class="cs-card">
-                        <div class="cs-icon">🎙️</div>
-                        <h4>The Podcast</h4>
-                        <p>Deep dives into exponential thinking applied to venture investing</p>
-                        <span class="cs-badge">2026</span>
+    <section class="section">
+        <div class="section-inner reveal">
+            <div class="section-header">
+                <div class="section-label">2026</div>
+                <h2 class="section-title">What's Coming</h2>
+            </div>
+            <div class="section-body">
+                <div></div>
+                <div class="section-content">
+                    <p>In 2026, Salim and James will release the <em>Exponential Venture Capital</em> (working title) book and podcast to support the fund MTP, as well as open the fund to outside LPs.</p>
+
+                    <div class="coming-grid">
+                        <div class="coming-card">
+                            <div class="coming-icon">📖</div>
+                            <h4>The Book</h4>
+                            <p><em>Exponential Venture Capital</em> — the definitive guide to systematized VC</p>
+                            <span class="coming-badge">2026</span>
+                        </div>
+                        <div class="coming-card">
+                            <div class="coming-icon">🎙️</div>
+                            <h4>The Podcast</h4>
+                            <p>Deep dives into exponential thinking applied to venture investing with a focus on exploring humanity-scale issues in ways that are useful to anyone listening, not only people working in tech, startups and investors.</p>
+                            <span class="coming-badge">2026</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- ============================================
-         BLACK CONTACT SECTION
+         CONTACT
          ============================================ -->
     <section class="contact">
         <div class="contact-inner">
-            <div>
+            <div class="contact-text">
                 <h3>Get in Touch</h3>
                 <p>Exponential Ventures is opening to outside LPs in 2026. To learn more about the fund, partnership opportunities, or the ExO methodology, reach out directly.</p>
                 <div class="contact-email">
-                    <a href="mailto:info@exponential.ventures">info@exponential.ventures</a>
+                    <a href="mailto:info@exponential.ventures">
+                        info@exponential.ventures
+                        <span>→</span>
+                    </a>
                 </div>
             </div>
-            <div>
-                <div class="newsletter" id="newsletter">
-                    <span class="newsletter-label">Stay Informed</span>
-                    <div class="newsletter-row" id="newsletterForm">
-                        <input type="email" class="newsletter-input" id="emailInput" placeholder="your@email.com">
-                        <button class="newsletter-btn" id="newsletterBtn" onclick="handleSubscribe()">Subscribe</button>
-                    </div>
-                    <div class="newsletter-success" id="newsletterSuccess">
-                        ✓ &nbsp;Thank you. We'll be in touch.
-                    </div>
+            <div class="newsletter" id="newsletter">
+                <div class="newsletter-label">Stay Informed</div>
+                <div class="newsletter-row" id="newsletterForm">
+                    <input type="email" class="newsletter-input" id="emailInput" placeholder="your@email.com">
+                    <button class="newsletter-btn" id="newsletterBtn" onclick="handleSubscribe()">Subscribe</button>
+                </div>
+                <div class="newsletter-success" id="newsletterSuccess">
+                    ✓ Thank you. We'll be in touch.
                 </div>
             </div>
         </div>
@@ -803,14 +1123,16 @@
          FOOTER
          ============================================ -->
     <footer class="footer">
-        <div class="footer-address">
-            Exponential Ventures<br>
-            Abu Dhabi Global Market<br>
-            Abu Dhabi, UAE
-        </div>
-        <div class="footer-right">
-            <span class="footer-copyright">© 2025 Exponential Ventures</span>
-            <div class="footer-logo">Ev</div>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">Ev</div>
+                <span class="footer-name">Exponential Ventures</span>
+            </div>
+            <div class="footer-locations">
+                <span>New York City, USA</span>
+                <span>Abu Dhabi, UAE</span>
+            </div>
+            <div class="footer-copyright">© 2025 Exponential Ventures</div>
         </div>
     </footer>
 
@@ -819,142 +1141,94 @@
          ============================================ -->
     <script>
         /* ============================================
-           GENERATIVE GEOMETRIC ART
-           Inspired by Kodori's intersecting lines
-           but using an exponential network/growth motif
+           COSMIC PARTICLE FIELD
            ============================================ */
-        (function drawHeroArt() {
-            const canvas = document.getElementById('heroCanvas');
+        (function initCosmicBackground() {
+            const canvas = document.getElementById('cosmicCanvas');
             const ctx = canvas.getContext('2d');
-            const dpr = window.devicePixelRatio || 1;
-            
-            // High-DPI support
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = 520 * dpr;
-            canvas.height = 520 * dpr;
-            canvas.style.width = '100%';
-            canvas.style.height = '100%';
-            ctx.scale(dpr, dpr);
-            
-            const W = 520;
-            const H = 520;
-            
-            // Color palette matching Kodori's teal-to-navy gradient lines
-            const colors = [
-                { r: 26, g: 138, b: 125 },   // Teal
-                { r: 42, g: 181, b: 164 },   // Light teal
-                { r: 26, g: 45, b: 74 },     // Navy
-                { r: 10, g: 22, b: 40 },     // Dark navy
-                { r: 70, g: 150, b: 140 },   // Mid teal
-                { r: 15, g: 35, b: 60 },     // Deep navy
-            ];
 
-            // Generate random lines that intersect — Kodori style
-            const lines = [];
-            const numLines = 12;
-            
-            for (let i = 0; i < numLines; i++) {
-                const angle = (Math.random() * Math.PI) - (Math.PI / 2);
-                const cx = W * 0.3 + Math.random() * W * 0.4;
-                const cy = H * 0.3 + Math.random() * H * 0.4;
-                const length = 200 + Math.random() * 300;
-                const width = 6 + Math.random() * 18;
-                const colorIdx = Math.floor(Math.random() * colors.length);
-                
-                lines.push({
-                    x1: cx - Math.cos(angle) * length / 2,
-                    y1: cy - Math.sin(angle) * length / 2,
-                    x2: cx + Math.cos(angle) * length / 2,
-                    y2: cy + Math.sin(angle) * length / 2,
-                    width: width,
-                    color: colors[colorIdx],
-                    opacity: 0.5 + Math.random() * 0.5,
-                    drawn: 0,
-                    speed: 0.015 + Math.random() * 0.015,
-                    delay: i * 80,
-                });
+            let width, height, particles;
+            const particleCount = 80;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
             }
 
-            // Add network nodes at line intersections
-            const nodes = [];
-            for (let i = 0; i < 8; i++) {
-                nodes.push({
-                    x: W * 0.2 + Math.random() * W * 0.6,
-                    y: H * 0.2 + Math.random() * H * 0.6,
-                    radius: 3 + Math.random() * 5,
-                    opacity: 0,
-                    targetOpacity: 0.4 + Math.random() * 0.6,
-                    delay: 800 + i * 120,
-                });
-            }
-
-            let startTime = null;
-
-            function animate(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const elapsed = timestamp - startTime;
-                
-                ctx.clearRect(0, 0, W, H);
-                
-                // Draw lines with progressive reveal
-                lines.forEach((line, i) => {
-                    const lineElapsed = Math.max(0, elapsed - line.delay);
-                    const progress = Math.min(1, lineElapsed * line.speed / 16);
-                    
-                    if (progress <= 0) return;
-                    
-                    const dx = line.x2 - line.x1;
-                    const dy = line.y2 - line.y1;
-                    
-                    // Eased progress
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    
-                    const currentX2 = line.x1 + dx * eased;
-                    const currentY2 = line.y1 + dy * eased;
-                    
-                    // Create gradient along the line
-                    const grad = ctx.createLinearGradient(line.x1, line.y1, currentX2, currentY2);
-                    const c = line.color;
-                    grad.addColorStop(0, `rgba(${c.r}, ${c.g}, ${c.b}, ${line.opacity * 0.3})`);
-                    grad.addColorStop(0.5, `rgba(${c.r}, ${c.g}, ${c.b}, ${line.opacity})`);
-                    grad.addColorStop(1, `rgba(${c.r}, ${c.g}, ${c.b}, ${line.opacity * 0.5})`);
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(line.x1, line.y1);
-                    ctx.lineTo(currentX2, currentY2);
-                    ctx.strokeStyle = grad;
-                    ctx.lineWidth = line.width;
-                    ctx.lineCap = 'square';
-                    ctx.stroke();
-                });
-                
-                // Draw nodes with fade in
-                nodes.forEach(node => {
-                    const nodeElapsed = Math.max(0, elapsed - node.delay);
-                    const fadeIn = Math.min(1, nodeElapsed / 600);
-                    
-                    if (fadeIn <= 0) return;
-                    
-                    const eased = 1 - Math.pow(1 - fadeIn, 2);
-                    const opacity = eased * node.targetOpacity;
-                    
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, node.radius * eased, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(26, 138, 125, ${opacity})`;
-                    ctx.fill();
-                });
-
-                // Keep animating until everything is drawn
-                if (elapsed < 3000) {
-                    requestAnimationFrame(animate);
+            function createParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        radius: Math.random() * 1.5 + 0.5,
+                        opacity: Math.random() * 0.5 + 0.1,
+                        pulseSpeed: Math.random() * 0.02 + 0.01,
+                        pulseOffset: Math.random() * Math.PI * 2
+                    });
                 }
             }
 
-            requestAnimationFrame(animate);
+            function drawParticles(time) {
+                ctx.clearRect(0, 0, width, height);
+
+                particles.forEach((p, i) => {
+                    // Update position
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    // Wrap around edges
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    // Pulsing opacity
+                    const pulse = Math.sin(time * p.pulseSpeed + p.pulseOffset);
+                    const opacity = p.opacity * (0.7 + pulse * 0.3);
+
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(0, 212, 170, ${opacity})`;
+                    ctx.fill();
+
+                    // Draw connections to nearby particles
+                    particles.slice(i + 1).forEach(p2 => {
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = `rgba(0, 212, 170, ${0.08 * (1 - dist / 150)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    });
+                });
+            }
+
+            function animate(time) {
+                drawParticles(time);
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', () => {
+                resize();
+            });
+
+            resize();
+            createParticles();
+            animate(0);
         })();
 
         /* ============================================
-           SCROLL REVEAL — Intersection Observer
+           SCROLL REVEAL
            ============================================ */
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -962,35 +1236,55 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        });
 
         document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
             revealObserver.observe(el);
         });
 
         /* ============================================
-           NEWSLETTER SUBSCRIBE HANDLER
+           NEWSLETTER SUBSCRIBE
            ============================================ */
         function handleSubscribe() {
             const input = document.getElementById('emailInput');
             const form = document.getElementById('newsletterForm');
             const success = document.getElementById('newsletterSuccess');
-            
+
             if (input.value && input.value.includes('@')) {
                 form.style.display = 'none';
                 success.classList.add('show');
             } else {
-                input.style.borderColor = '#c53030';
+                input.style.borderColor = '#ff4444';
                 input.focus();
                 setTimeout(() => {
-                    input.style.borderColor = 'rgba(255,255,255,0.15)';
+                    input.style.borderColor = 'rgba(139, 139, 163, 0.2)';
                 }, 2000);
             }
         }
 
-        // Enter key triggers subscribe
         document.getElementById('emailInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') handleSubscribe();
+        });
+
+        /* ============================================
+           SMOOTH NAV BACKGROUND ON SCROLL
+           ============================================ */
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(3, 3, 8, 0.95)';
+            } else {
+                nav.style.background = 'linear-gradient(to bottom, rgba(3, 3, 8, 1) 0%, transparent 100%)';
+            }
+
+            lastScroll = currentScroll;
         });
     </script>
 </body>
