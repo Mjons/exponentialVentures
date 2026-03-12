@@ -1526,6 +1526,9 @@
       </div>
     </footer>
 
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <!-- ============================================
          JAVASCRIPT
          ============================================ -->
@@ -1554,17 +1557,41 @@
       /* ============================================
          NEWSLETTER SUBSCRIBE
          ============================================ */
-      function handleSubscribe() {
+      const _sb = supabase.createClient(
+        "https://blkidupaogqyvetgyhyo.supabase.co",
+        "sb_publishable_p9ktPDpGYqqJOCpCPj0sdg_BEkLhSQu"
+      );
+
+      async function handleSubscribe() {
         const input = document.getElementById("emailInput");
         const form = document.getElementById("newsletterForm");
         const success = document.getElementById("newsletterSuccess");
+        const btn = document.getElementById("newsletterBtn");
+        const email = input.value.trim();
 
-        if (input.value && input.value.includes("@")) {
+        if (!email || !email.includes("@")) {
+          input.style.borderColor = "#dc2626";
+          input.focus();
+          setTimeout(() => {
+            input.style.borderColor = "";
+          }, 2000);
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "...";
+
+        const { error } = await _sb
+          .from("newsletter_signups")
+          .insert({ email, source: "exponential.ventures" });
+
+        if (!error || error.code === "23505") {
           form.style.display = "none";
           success.classList.add("show");
         } else {
+          btn.disabled = false;
+          btn.textContent = "Subscribe";
           input.style.borderColor = "#dc2626";
-          input.focus();
           setTimeout(() => {
             input.style.borderColor = "";
           }, 2000);
