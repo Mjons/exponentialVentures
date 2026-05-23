@@ -1,0 +1,19 @@
+# Local tooling
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+nul
+
+# Internal strategy / planning docs — do not publish
+Exponential_venture_capital_V2_brief.md
+Exponential_ventures_changes.md
+V2_REBUILD_PLAN.md
+ev-info-from-drage.md
+
+# Editor backups / temp files
+*.swp
+*.swo
+*~
+*.bak

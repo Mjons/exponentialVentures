@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /insights/
+Disallow: /podcast/
+Disallow: /cohort/
+Disallow: /portfolio/
+Disallow: /privacy/
+Disallow: /legal/
+Disallow: /404.html
+
+Sitemap: https://exponentialventure.capital/sitemap.xml

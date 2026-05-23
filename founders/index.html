@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talk to the fund — Exponential Venture Capital</title>
+    <meta
+      name="description"
+      content="Tell us what you are building. Read by a partner within seven days."
+    />
+
+    <meta
+      property="og:title"
+      content="Talk to the fund — Exponential Venture Capital"
+    />
+    <meta
+      property="og:description"
+      content="Founder inquiry. Tell us what you are building."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://exponentialventure.capital/founders/"
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f6f3ee'/><text x='50' y='66' text-anchor='middle' font-family='Georgia,serif' font-size='52' fill='%23111418'>E</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;450;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="wordmark" href="/">Exponential Venture Capital</a>
+        <nav aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="/fund/">Fund</a></li>
+            <li><a href="/approach/">Approach</a></li>
+            <li><a href="/book/">Book</a></li>
+            <li><a href="/team/">Team</a></li>
+            <li><a href="/community/">Community</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-cta">
+          <button class="btn btn--ghost" data-modal-open>Talk to us</button>
+          <button class="nav-toggle" data-drawer-open aria-label="Open menu">
+            <span class="nav-toggle__bars"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <aside class="drawer" aria-hidden="true">
+      <button class="drawer__close" data-drawer-close aria-label="Close menu">
+        &times;
+      </button>
+      <ul class="drawer__list">
+        <li><a href="/fund/">Fund</a></li>
+        <li><a href="/approach/">Approach</a></li>
+        <li><a href="/book/">Book</a></li>
+        <li><a href="/team/">Team</a></li>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <button class="btn btn--primary drawer__cta" data-modal-open>
+        Talk to us <span class="arrow">&rarr;</span>
+      </button>
+    </aside>
+
+    <div
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal__card">
+        <button class="modal__close" data-modal-close aria-label="Close">
+          &times;
+        </button>
+        <h3 id="modalTitle">Tell us who you are.</h3>
+        <p>Three doors, no front desk.</p>
+        <div class="modal__choices">
+          <a class="modal__choice" href="/founders/"
+            >For founders <span>&rarr;</span></a
+          >
+          <a class="modal__choice" href="/lp/"
+            >For LPs &amp; strategic partners <span>&rarr;</span></a
+          >
+          <a
+            class="modal__choice"
+            href="mailto:media@exponentialventure.capital"
+            >Media, podcasts &amp; speaking <span>&rarr;</span></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div
+          class="hero__inner reveal"
+          style="
+            max-width: var(--max-narrow);
+            margin: 0 auto;
+            padding-inline: 0;
+          "
+        >
+          <span class="eyebrow">For founders</span>
+          <h1>Tell us what you are building.</h1>
+          <p class="lead">
+            Short, structured, and read by a partner within seven days.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container container--narrow">
+          <!-- TODO: replace action with Formspree/Basin endpoint when provisioned -->
+          <form
+            class="form"
+            data-inquiry-form
+            action="https://formspree.io/f/REPLACE_FOUNDER"
+            method="POST"
+          >
+            <div class="form__fields" style="display: grid; gap: 1.75rem">
+              <input
+                type="hidden"
+                name="_subject"
+                value="Founder inquiry — Exponential Venture Capital"
+              />
+              <div class="field">
+                <label for="f-name"
+                  >Founder name <span class="required">*</span></label
+                >
+                <input id="f-name" name="founder_name" type="text" required />
+              </div>
+              <div class="field">
+                <label for="f-company"
+                  >Company name <span class="required">*</span></label
+                >
+                <input
+                  id="f-company"
+                  name="company_name"
+                  type="text"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="f-website"
+                  >Company website
+                  <span
+                    class="muted"
+                    style="font-weight: 400; font-size: 0.8125rem"
+                    >(optional)</span
+                  ></label
+                >
+                <input
+                  id="f-website"
+                  name="company_website"
+                  type="url"
+                  placeholder="https://"
+                />
+              </div>
+              <div class="field">
+                <label for="f-location"
+                  >Country / city <span class="required">*</span></label
+                >
+                <input id="f-location" name="location" type="text" required />
+              </div>
+              <div class="field">
+                <label>Stage <span class="required">*</span></label>
+                <div class="radio-group">
+                  <label class="radio"
+                    ><input
+                      type="radio"
+                      name="stage"
+                      value="pre-seed"
+                      required
+                    />
+                    Pre-seed</label
+                  >
+                  <label class="radio"
+                    ><input type="radio" name="stage" value="seed" />
+                    Seed</label
+                  >
+                  <label class="radio"
+                    ><input type="radio" name="stage" value="series-a" /> Series
+                    A</label
+                  >
+                  <label class="radio"
+                    ><input type="radio" name="stage" value="later" />
+                    Later</label
+                  >
+                </div>
+              </div>
+              <div class="field">
+                <label for="f-desc"
+                  >One-sentence description of what you are building
+                  <span class="required">*</span></label
+                >
+                <input
+                  id="f-desc"
+                  name="one_sentence"
+                  type="text"
+                  required
+                  maxlength="240"
+                />
+              </div>
+              <div class="field">
+                <label for="f-problem"
+                  >The civilization-scale problem you are solving
+                  <span class="required">*</span></label
+                >
+                <p class="help">250-word limit.</p>
+                <textarea
+                  id="f-problem"
+                  name="problem"
+                  required
+                  maxlength="1800"
+                ></textarea>
+              </div>
+              <div class="field">
+                <label for="f-stack"
+                  >How the Intelligence Stack shows up in your architecture
+                  <span class="required">*</span></label
+                >
+                <p class="help">250-word limit.</p>
+                <textarea
+                  id="f-stack"
+                  name="intelligence_stack"
+                  required
+                  maxlength="1800"
+                ></textarea>
+              </div>
+              <div class="field">
+                <label
+                  >Where you are on GOVERNASSURE
+                  <span class="required">*</span></label
+                >
+                <div class="radio-group">
+                  <label class="radio"
+                    ><input
+                      type="radio"
+                      name="governassure"
+                      value="not-yet"
+                      required
+                    />
+                    Not yet</label
+                  >
+                  <label class="radio"
+                    ><input
+                      type="radio"
+                      name="governassure"
+                      value="designing"
+                    />
+                    Designing it</label
+                  >
+                  <label class="radio"
+                    ><input
+                      type="radio"
+                      name="governassure"
+                      value="production"
+                    />
+                    Running it in production</label
+                  >
+                </div>
+              </div>
+              <div class="field">
+                <label for="f-source">How did you hear about us?</label>
+                <textarea id="f-source" name="source" rows="3"></textarea>
+              </div>
+              <div class="field">
+                <label for="f-email"
+                  >Email <span class="required">*</span></label
+                >
+                <input id="f-email" name="email" type="email" required />
+              </div>
+              <div class="field">
+                <label for="f-linkedin"
+                  >LinkedIn or deck URL
+                  <span
+                    class="muted"
+                    style="font-weight: 400; font-size: 0.8125rem"
+                    >(optional)</span
+                  ></label
+                >
+                <input
+                  id="f-linkedin"
+                  name="linkedin_or_deck"
+                  type="url"
+                  placeholder="https://"
+                />
+              </div>
+              <div class="form__submit">
+                <button type="submit" class="btn btn--primary">
+                  Send to the fund <span class="arrow">&rarr;</span>
+                </button>
+              </div>
+              <p class="form__note">
+                A partner reviews every submission. Protected by reCAPTCHA v3
+                (invisible).
+              </p>
+            </div>
+
+            <div class="form__success">
+              <h3>Thank you.</h3>
+              <p style="margin-top: 0.75rem">
+                A partner reviews every submission. If your company is a fit for
+                Organizational Singularity Fund I, you will hear from us within
+                seven days.
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__brand">
+          <div>
+            <div class="wordmark">Exponential Venture Capital</div>
+            <p class="site-footer__tagline">
+              Investing through the Organizational Singularity. Backing founders
+              building Intelligence-Stack-native companies from day one.
+            </p>
+          </div>
+          <form class="subscribe" onsubmit="return false;">
+            <label class="subscribe__label" for="subEmail"
+              >Quarterly notes from Exponential Venture Capital.</label
+            >
+            <div class="subscribe__row">
+              <input
+                id="subEmail"
+                type="email"
+                placeholder="your@email.com"
+                required
+              />
+              <button type="submit">Subscribe</button>
+            </div>
+            <div class="subscribe__success">
+              &#10003; Thank you. You are on the list.
+            </div>
+          </form>
+        </div>
+        <div class="site-footer__cols">
+          <div class="site-footer__col">
+            <h4>Firm</h4>
+            <ul>
+              <li><a href="/">Exponential Venture Capital</a></li>
+              <li><a href="/approach/">Approach</a></li>
+              <li><a href="/team/">Team</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__col">
+            <h4>Fund</h4>
+            <ul>
+              <li><a href="/fund/">Organizational Singularity Fund I</a></li>
+              <li><a href="/founders/">For founders</a></li>
+              <li><a href="/lp/">For LPs</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__col">
+            <h4>Ideas</h4>
+            <ul>
+              <li><a href="/book/">The Book</a></li>
+              <li><a href="/podcast/">The Podcast (coming 2026)</a></li>
+              <li><a href="/insights/">Insights</a></li>
+              <li><a href="/community/">OpenExO community</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li><a href="/legal/">Legal</a></li>
+              <li><a href="/legal/#lp-disclaimer">LP disclaimer</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="site-footer__base">
+          <div>
+            &copy; <span data-year>2026</span> Exponential Venture Capital
+            &middot; New York &middot; Abu Dhabi &middot; Global
+          </div>
+          <div class="site-footer__social">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              href="https://www.linkedin.com/in/salimismail/"
+              target="_blank"
+              rel="noopener"
+              >Salim</a
+            >
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+              >James</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

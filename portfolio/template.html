@@ -1,0 +1,99 @@
+<!doctype html>
+<!--
+  Portfolio case study template (V2).
+  Duplicate this file as /portfolio/[slug]/index.html when a case study ships.
+  Replace every {{ }} placeholder before publishing.
+  Hidden from nav; routed only via direct link.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ Company Name }} — Portfolio — Exponential Venture Capital</title>
+    <meta
+      name="description"
+      content="{{ One-line description of the company and what this case study covers. }}"
+    />
+    <meta name="robots" content="noindex" />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f6f3ee'/><text x='50' y='66' text-anchor='middle' font-family='Georgia,serif' font-size='52' fill='%23111418'>E</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;450;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="wordmark" href="/">Exponential Venture Capital</a>
+        <nav aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="/fund/">Fund</a></li>
+            <li><a href="/approach/">Approach</a></li>
+            <li><a href="/book/">Book</a></li>
+            <li><a href="/team/">Team</a></li>
+            <li><a href="/community/">Community</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost" href="/founders/">Talk to the fund</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero__inner reveal">
+          <span class="eyebrow">Portfolio</span>
+          <h1>{{ Company Name }}.</h1>
+          <p class="lead">
+            {{ One-paragraph summary of the company and the thesis fit. }}
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container container--narrow">
+          <h2>What the company does.</h2>
+          <p style="margin-top: 1rem">
+            {{ 1&ndash;2 paragraphs on the product, the customer, and the
+            civilization-scale problem it addresses. }}
+          </p>
+
+          <h2 style="margin-top: 3rem">Why we backed it.</h2>
+          <p style="margin-top: 1rem">
+            {{ Architectural fit, founder quality, MTP coherence, GOVERNASSURE
+            readiness. }}
+          </p>
+
+          <h2 style="margin-top: 3rem">How we are working together.</h2>
+          <p style="margin-top: 1rem">
+            {{ Backcasting Canvas, MVIS, GOVERNASSURE pillar scores, what we
+            have learned. }}
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__base">
+          <div>
+            &copy; <span data-year>2026</span> Exponential Venture Capital
+            &middot; New York &middot; Abu Dhabi &middot; Global
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

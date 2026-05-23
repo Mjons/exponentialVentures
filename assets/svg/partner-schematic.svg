@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="psTitle psDesc">
+  <title id="psTitle">Systematized Venture Capital — partner schematic</title>
+  <desc id="psDesc">Two human partners in New York and Abu Dhabi, two AI venture partner engines (Qualitative and Quantitative Diligence), and the OpenExO ecosystem base of 1,600+ coaches.</desc>
+
+  <style>
+    .node    { fill: #ffffff; stroke: #c9c2b3; stroke-width: 1; }
+    .node-accent { fill: #ffffff; stroke: #0c6e5a; stroke-width: 1.25; }
+    .base    { fill: #efebe3; stroke: #c9c2b3; stroke-width: 1; }
+    .line    { stroke: #c9c2b3; stroke-width: 1; fill: none; }
+    .dot     { fill: #0c6e5a; }
+    .label-l { font-family: "Fraunces","Tiempos Headline","Georgia",serif; font-size: 16px; fill: #111418; letter-spacing: 0.01em; }
+    .label-d { font-family: "Inter","Söhne",system-ui,sans-serif; font-size: 11.5px; fill: #56606b; }
+    .label-m { font-family: "Inter","Söhne",system-ui,sans-serif; font-size: 10px; fill: #7a838f; letter-spacing: 0.16em; text-transform: uppercase; }
+  </style>
+
+  <!-- Connecting lines (drawn first, behind nodes) -->
+  <path class="line" d="M 200 90  L 360 220" />
+  <path class="line" d="M 520 90  L 360 220" />
+  <path class="line" d="M 200 280 L 360 220" />
+  <path class="line" d="M 520 280 L 360 220" />
+  <path class="line" d="M 200 280 L 360 400" />
+  <path class="line" d="M 520 280 L 360 400" />
+  <circle class="dot" cx="360" cy="220" r="3" />
+
+  <!-- Human partners row -->
+  <g>
+    <rect class="node" x="60" y="40" width="280" height="80" rx="2" />
+    <text class="label-m" x="80" y="68">HUMAN PARTNER · NEW YORK</text>
+    <text class="label-l" x="80" y="96">Salim Ismail</text>
+  </g>
+  <g>
+    <rect class="node" x="380" y="40" width="280" height="80" rx="2" />
+    <text class="label-m" x="400" y="68">HUMAN PARTNER · ABU DHABI</text>
+    <text class="label-l" x="400" y="96">James Drage</text>
+  </g>
+
+  <!-- AI venture partners row -->
+  <g>
+    <rect class="node-accent" x="60" y="230" width="280" height="90" rx="2" />
+    <text class="label-m" x="80" y="258">AI VENTURE PARTNER</text>
+    <text class="label-l" x="80" y="286">Qualitative Diligence Engine</text>
+    <text class="label-d" x="80" y="306">Founder quality · MTP coherence · fit</text>
+  </g>
+  <g>
+    <rect class="node-accent" x="380" y="230" width="280" height="90" rx="2" />
+    <text class="label-m" x="400" y="258">AI VENTURE PARTNER</text>
+    <text class="label-l" x="400" y="286">Quantitative Diligence Engine</text>
+    <text class="label-d" x="400" y="306">Markets · models · comparables</text>
+  </g>
+
+  <!-- OpenExO base -->
+  <g>
+    <rect class="base" x="60" y="380" width="600" height="70" rx="2" />
+    <text class="label-m" x="80" y="408">THE OPENEXO ECOSYSTEM</text>
+    <text class="label-l" x="80" y="434">1,600+ coaches, consultants, and subject matter experts</text>
+  </g>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="isTitle isDesc">
+  <title id="isTitle">The Intelligence Stack</title>
+  <desc id="isDesc">Six continuous cognitive layers — Purpose, Sense, Interpret, Decide, Orchestrate, Learn — wrapped by the GOVERNASSURE control plane.</desc>
+
+  <style>
+    .ink   { fill: #111418; }
+    .soft  { fill: #56606b; }
+    .quiet { fill: #7a838f; }
+    .accent{ fill: #0c6e5a; }
+    .panel { fill: #ffffff; stroke: #c9c2b3; stroke-width: 1; }
+    .band  { fill: #efebe3; stroke: #c9c2b3; stroke-width: 1; }
+    .layer { fill: #f6f3ee; stroke: #c9c2b3; stroke-width: 1; }
+    .layer.is-visible { fill: #ffffff; }
+    .label-l { font-family: "Fraunces","Tiempos Headline","Georgia",serif; font-size: 16px; fill: #111418; letter-spacing: 0.02em; }
+    .label-d { font-family: "Inter","Söhne",system-ui,sans-serif; font-size: 12px; fill: #56606b; letter-spacing: 0.04em; }
+    .label-m { font-family: "Inter","Söhne",system-ui,sans-serif; font-size: 11px; fill: #7a838f; letter-spacing: 0.16em; text-transform: uppercase; }
+    .label-g { font-family: "Inter","Söhne",system-ui,sans-serif; font-size: 13px; fill: #0c6e5a; font-weight: 600; letter-spacing: 0.12em; }
+  </style>
+
+  <!-- Outer GOVERNASSURE band -->
+  <rect class="band" x="20" y="20" width="680" height="480" rx="2" />
+  <text class="label-g" x="40" y="50">GOVERNASSURE</text>
+  <text class="label-m" x="40" y="70">TRUSTED EVALS · SEARCHABLE LOGS · GRANULAR ROLLBACK · HUMAN REVIEW</text>
+
+  <!-- Inner stack container -->
+  <rect class="panel" x="60" y="100" width="600" height="380" rx="2" />
+
+  <!-- Six layers -->
+  <g class="reveal-layer">
+    <rect class="layer" x="80" y="120" width="560" height="56" />
+    <text class="label-l" x="100" y="148">PURPOSE</text>
+    <text class="label-d" x="100" y="166">Constitutional intent. What the company is categorically for and against.</text>
+  </g>
+  <g class="reveal-layer">
+    <rect class="layer" x="80" y="184" width="560" height="56" />
+    <text class="label-l" x="100" y="212">SENSE</text>
+    <text class="label-d" x="100" y="230">Continuous external sensing. The end of quarterly review cycles.</text>
+  </g>
+  <g class="reveal-layer">
+    <rect class="layer" x="80" y="248" width="560" height="56" />
+    <text class="label-l" x="100" y="276">INTERPRET</text>
+    <text class="label-d" x="100" y="294">The firm's continuously updated world model.</text>
+  </g>
+  <g class="reveal-layer">
+    <rect class="layer" x="80" y="312" width="560" height="56" />
+    <text class="label-l" x="100" y="340">DECIDE</text>
+    <text class="label-d" x="100" y="358">Options committed inside a Permission Envelope. Two-way doors execute autonomously.</text>
+  </g>
+  <g class="reveal-layer">
+    <rect class="layer" x="80" y="376" width="560" height="56" />
+    <text class="label-l" x="100" y="404">ORCHESTRATE</text>
+    <text class="label-d" x="100" y="422">Tools, workflows, APIs, humans, agents. Humans above the loop.</text>
+  </g>
+  <g class="reveal-layer">
+    <rect class="layer" x="80" y="440" width="560" height="40" />
+    <text class="label-l" x="100" y="468">LEARN</text>
+  </g>
+</svg>
