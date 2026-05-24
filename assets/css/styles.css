@@ -773,6 +773,25 @@ small {
   color: var(--ink-quiet);
   letter-spacing: -0.02em;
   filter: grayscale(1);
+  overflow: hidden;
+  position: relative;
+}
+.partner__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.18);
+  transform-origin: center 22%;
+  transition: transform 600ms var(--ease);
+}
+.partner__portrait--salim img {
+  object-position: center 24%;
+  transform-origin: center 24%;
+}
+.partner__portrait--james img {
+  object-position: center 18%;
+  transform-origin: center 20%;
 }
 .partner__role {
   font-size: 0.8125rem;
