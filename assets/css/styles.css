@@ -505,6 +505,16 @@ small {
   max-width: 56ch;
   color: var(--ink-soft);
 }
+.hero__creed {
+  margin-top: 2rem;
+  max-width: 56ch;
+}
+.hero__creed p {
+  margin-top: 1rem;
+}
+.hero__creed p:first-child {
+  margin-top: 0;
+}
 .hero__ctas {
   margin-top: 2.5rem;
   display: flex;
@@ -1322,4 +1332,53 @@ small {
   max-width: 54ch;
   color: var(--ink-soft);
   margin-bottom: 1.5rem;
+}
+
+/* ---------- Video band (Salim on Moonshots) ---------- */
+.section--video {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-alt);
+}
+.video-band {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.video-band__head {
+  max-width: 60ch;
+  margin-inline: auto;
+}
+.video-band__title {
+  margin-top: 0.75rem;
+}
+.video-band__kicker {
+  margin-top: 0.5rem;
+  color: var(--ink-mute);
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+}
+.video-figure {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2.25rem auto 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  box-shadow:
+    0 24px 64px -24px rgba(17, 20, 24, 0.4),
+    0 2px 6px rgba(17, 20, 24, 0.08);
+}
+.video-player {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  outline: none;
+}
+.video-player:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
