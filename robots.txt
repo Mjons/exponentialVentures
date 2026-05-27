@@ -9,4 +9,4 @@ Disallow: /privacy/
 Disallow: /legal/
 Disallow: /404.html
 
-Sitemap: https://exponentialventure.capital/sitemap.xml
+Sitemap: https://www.exponentialventurecapital.com/sitemap.xml
