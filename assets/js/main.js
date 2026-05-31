@@ -151,17 +151,80 @@
 
   /* ---------- Inquiry forms (founder + LP) ---------- */
   document.querySelectorAll("[data-inquiry-form]").forEach((form) => {
-    form.addEventListener("submit", (e) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    function showError(msg) {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.dataset.busy = "";
+      }
+      let errEl = form.querySelector(".form__error");
+      if (!errEl) {
+        errEl = document.createElement("p");
+        errEl.className = "form__error";
+        errEl.setAttribute("role", "alert");
+        const submitWrap = form.querySelector(".form__submit");
+        if (submitWrap) submitWrap.insertAdjacentElement("afterend", errEl);
+        else form.appendChild(errEl);
+      }
+      errEl.textContent =
+        msg ||
+        "Something went wrong sending your message. Please try again, or email us directly.";
+    }
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      // TODO: POST to Formspree / Basin endpoint configured in form's action attribute.
-      // Until backend is wired, treat as successful local-only submission.
-      form.classList.add("is-submitted");
-      const success = form.querySelector(".form__success");
-      if (success) success.classList.add("is-visible");
-      window.scrollTo({
-        top: form.getBoundingClientRect().top + window.scrollY - 100,
-        behavior: "smooth",
-      });
+
+      const action = form.getAttribute("action") || "";
+      if (!action || action.indexOf("REPLACE_") !== -1) {
+        showError(
+          "This form is not yet connected. Please email us directly while we finish setup.",
+        );
+        return;
+      }
+
+      const existingError = form.querySelector(".form__error");
+      if (existingError) existingError.remove();
+
+      const originalLabel = submitBtn ? submitBtn.innerHTML : "";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.busy = "1";
+        submitBtn.textContent = "Sending…";
+      }
+
+      try {
+        const res = await fetch(action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+
+        if (res.ok) {
+          form.classList.add("is-submitted");
+          const success = form.querySelector(".form__success");
+          if (success) success.classList.add("is-visible");
+          window.scrollTo({
+            top: form.getBoundingClientRect().top + window.scrollY - 100,
+            behavior: "smooth",
+          });
+        } else {
+          let msg = "";
+          try {
+            const data = await res.json();
+            if (data && Array.isArray(data.errors) && data.errors.length) {
+              msg = data.errors.map((x) => x.message).join(", ");
+            }
+          } catch (_) {
+            /* non-JSON error body */
+          }
+          if (submitBtn) submitBtn.innerHTML = originalLabel;
+          showError(msg);
+        }
+      } catch (_) {
+        if (submitBtn) submitBtn.innerHTML = originalLabel;
+        showError();
+      }
     });
   });
 

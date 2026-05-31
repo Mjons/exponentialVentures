@@ -1009,6 +1009,15 @@ small {
 .form.is-submitted .form__fields {
   display: none;
 }
+.form__error {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #a8323a;
+  background: rgba(168, 50, 58, 0.06);
+  color: #a8323a;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+}
 
 /* ---------- Subscribe widget ---------- */
 .subscribe {
