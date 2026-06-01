@@ -374,9 +374,18 @@ small {
   letter-spacing: -0.01em;
   color: var(--ink);
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 .wordmark em {
   font-style: italic;
+}
+.wordmark img {
+  display: block;
+  height: 1.875rem;
+  width: auto;
+  max-width: 100%;
 }
 .nav-list {
   display: none;
@@ -1100,6 +1109,10 @@ small {
 .site-footer .wordmark {
   color: var(--on-dark);
   font-size: 1.5rem;
+}
+.site-footer .wordmark img {
+  height: 2.25rem;
+  filter: brightness(0) invert(1);
 }
 .site-footer__tagline {
   color: var(--on-dark-mute);
