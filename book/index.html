@@ -156,9 +156,11 @@
           </div>
 
           <!--
-            TODO: in-site reader — reviewer asked whether both books can be
-            read on this site instead of leaving. Current implementation links
-            out; revisit when a permissioned/embedded reader is available.
+            In-site reader: each "Read on EV" button opens a modal with an
+            iframe of the OpenExO page. If the OpenExO page blocks framing
+            (X-Frame-Options / CSP), the modal shows a fallback "Continue on
+            openexo.com" CTA. The button itself is an anchor with target=_blank
+            so users without JS still get a working outbound link.
           -->
 
           <div class="grid-2 reveal" style="margin-block: 3rem 1rem">
@@ -188,10 +190,13 @@
               </p>
               <a
                 class="btn btn--primary"
+                data-book-open
+                data-book-url="https://openexo.com/book"
+                data-book-title="Exponential Organizations 2.0"
                 href="https://openexo.com/book"
                 target="_blank"
                 rel="noopener"
-                >Read on openexo.com <span class="arrow">&rarr;</span></a
+                >Read the book <span class="arrow">&rarr;</span></a
               >
             </div>
 
@@ -221,10 +226,13 @@
               </p>
               <a
                 class="btn btn--primary"
+                data-book-open
+                data-book-url="https://openexo.com/organizational-singularity"
+                data-book-title="The Organizational Singularity"
                 href="https://openexo.com/organizational-singularity"
                 target="_blank"
                 rel="noopener"
-                >Read on openexo.com <span class="arrow">&rarr;</span></a
+                >Read the book <span class="arrow">&rarr;</span></a
               >
             </div>
           </div>
@@ -257,6 +265,65 @@
           </div>
         </div>
       </section>
+
+      <div
+        class="book-reader"
+        data-book-reader
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bookReaderTitle"
+      >
+        <div class="book-reader__inner">
+          <header class="book-reader__head">
+            <div class="book-reader__head-text">
+              <span class="eyebrow">Reading on EV</span>
+              <h3 id="bookReaderTitle" class="book-reader__title">Book</h3>
+            </div>
+            <div class="book-reader__head-actions">
+              <a
+                class="text-link text-link--quiet"
+                data-book-reader-external
+                href=""
+                target="_blank"
+                rel="noopener"
+                >Open on openexo.com <span class="arrow">&rarr;</span></a
+              >
+              <button
+                class="book-reader__close"
+                data-book-reader-close
+                aria-label="Close reader"
+              >
+                &times;
+              </button>
+            </div>
+          </header>
+          <div class="book-reader__body">
+            <iframe
+              class="book-reader__frame"
+              data-book-reader-frame
+              src="about:blank"
+              title=""
+              referrerpolicy="no-referrer-when-downgrade"
+              loading="lazy"
+            ></iframe>
+            <div class="book-reader__fallback">
+              <p>
+                This book can&rsquo;t be embedded here, but it&rsquo;s a click
+                away on openexo.com.
+              </p>
+              <a
+                class="btn btn--primary"
+                data-book-reader-external
+                href=""
+                target="_blank"
+                rel="noopener"
+                >Continue to openexo.com <span class="arrow">&rarr;</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="site-footer">
@@ -319,7 +386,6 @@
             <ul>
               <li><a href="../privacy/">Privacy</a></li>
               <li><a href="../legal/">Legal</a></li>
-              <li><a href="../legal/#lp-disclaimer">LP disclaimer</a></li>
             </ul>
           </div>
         </div>

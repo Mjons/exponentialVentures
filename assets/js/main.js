@@ -73,6 +73,76 @@
     }
   });
 
+  /* ---------- Book reader (iframe + fallback) ---------- */
+  const bookReader = document.querySelector("[data-book-reader]");
+  if (bookReader) {
+    const frame = bookReader.querySelector("[data-book-reader-frame]");
+    const titleEl = bookReader.querySelector(".book-reader__title");
+    const externals = bookReader.querySelectorAll(
+      "[data-book-reader-external]",
+    );
+    const closeReader = bookReader.querySelector("[data-book-reader-close]");
+    let blockedTimer = null;
+
+    function openBookReader(url, title) {
+      titleEl.textContent = title || "Book";
+      externals.forEach((a) => {
+        a.setAttribute("href", url);
+      });
+      bookReader.classList.remove("is-blocked");
+      frame.setAttribute("title", title || "Book");
+      frame.setAttribute("src", url);
+      bookReader.classList.add("is-open");
+      bookReader.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      // If the iframe load event hasn't fired in ~4s, assume framing is blocked
+      // and surface the fallback. (Cross-origin frames don't reliably error.)
+      if (blockedTimer) clearTimeout(blockedTimer);
+      let loaded = false;
+      const onLoad = () => {
+        loaded = true;
+      };
+      frame.addEventListener("load", onLoad, { once: true });
+      blockedTimer = setTimeout(() => {
+        if (!loaded) bookReader.classList.add("is-blocked");
+      }, 4000);
+    }
+
+    function closeBookReader() {
+      bookReader.classList.remove("is-open", "is-blocked");
+      bookReader.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      frame.setAttribute("src", "about:blank");
+      if (blockedTimer) {
+        clearTimeout(blockedTimer);
+        blockedTimer = null;
+      }
+    }
+
+    document.querySelectorAll("[data-book-open]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        // Allow modifier-clicks / middle-clicks to use the underlying href
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault();
+        openBookReader(
+          btn.getAttribute("data-book-url"),
+          btn.getAttribute("data-book-title"),
+        );
+      });
+    });
+
+    if (closeReader) closeReader.addEventListener("click", closeBookReader);
+    bookReader.addEventListener("click", (e) => {
+      if (e.target === bookReader) closeBookReader();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && bookReader.classList.contains("is-open")) {
+        closeBookReader();
+      }
+    });
+  }
+
   /* ---------- Subscribe (Supabase newsletter_signups) ---------- */
   const SUBSCRIBE_WIDGETS = document.querySelectorAll(".subscribe");
   if (SUBSCRIBE_WIDGETS.length > 0) {

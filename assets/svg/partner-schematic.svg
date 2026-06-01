@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="psTitle psDesc">
   <title id="psTitle">Systematized Venture Capital™ — partner schematic</title>
-  <desc id="psDesc">Two human partners in New York and Abu Dhabi, two AI venture partner engines (Qualitative and Quantitative Diligence), and the OpenExO ecosystem base of 1,600+ coaches.</desc>
+  <desc id="psDesc">Two human partners in New York and the UAE / Canada, two AI venture partner engines (Qualitative and Quantitative Diligence), and the OpenExO ecosystem base of 45,000+ members and 1,600+ trained ExO coaches.</desc>
 
   <style>
     .node    { fill: #ffffff; stroke: #c9c2b3; stroke-width: 1; }
@@ -30,7 +30,7 @@
   </g>
   <g>
     <rect class="node" x="380" y="40" width="280" height="80" rx="2" />
-    <text class="label-m" x="400" y="68">HUMAN PARTNER · ABU DHABI</text>
+    <text class="label-m" x="400" y="68">HUMAN PARTNER · UAE / CANADA</text>
     <text class="label-l" x="400" y="96">James Drage</text>
   </g>
 
@@ -52,6 +52,6 @@
   <g>
     <rect class="base" x="60" y="380" width="600" height="70" rx="2" />
     <text class="label-m" x="80" y="408">THE OPENEXO ECOSYSTEM</text>
-    <text class="label-l" x="80" y="434">1,600+ coaches, consultants, and subject matter experts</text>
+    <text class="label-l" x="80" y="434">45,000+ members &#183; 1,600+ trained ExO coaches, consultants &amp; experts</text>
   </g>
 </svg>
